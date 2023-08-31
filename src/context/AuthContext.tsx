@@ -90,12 +90,12 @@ const AuthProviderWrapper: React.FC<{ children: ReactNode }> = ({
   }, []);
 
   const contextValue: AuthContextObj = {
-    isLoggedIn,
-    isLoading,
-    user,
-    storeToken,
-    authenticateUser,
-    logOutUser,
+    isLoggedIn: isLoggedIn,
+    isLoading: isLoading,
+    user: user,
+    storeToken: storeToken,
+    authenticateUser: authenticateUser,
+    logOutUser: logOutUser,
   };
 
   return (

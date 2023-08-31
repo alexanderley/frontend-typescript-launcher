@@ -9,11 +9,13 @@ import API_URL from "../../apiKey";
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage] = useState(undefined);
+  const [errorMessage, setErrorMessage] = useState(undefined);
 
   const navigate = useNavigate();
 
   const { storeToken, authenticateUser } = useContext(AuthContext);
+
+  console.log("auth function", authenticateUser);
 
   const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) =>
     setEmail(e.target.value);
@@ -31,15 +33,35 @@ const LoginPage: React.FC = () => {
       storeToken(response.data.authToken);
       authenticateUser();
       navigate("/");
-    } catch (error: unknown) {
+    } catch (error: any) {
       console.error(error);
+      setErrorMessage(error);
     }
   };
+
+  // const handleLoginSubmit = (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   const requestBody = { email, password };
+
+  //   axios
+  //     .post(`${API_URL}/auth/login`, requestBody)
+  //     .then((response) => {
+  //       console.log("JWT token", response.data.authToken);
+  //       storeToken(response.data.authToken);
+  //       authenticateUser();
+  //       navigate("/");
+  //     })
+  //     .catch((error) => {
+  //       const errorDescription = error.response.data.message;
+  //       setErrorMessage(errorDescription);
+  //     });
+  // };
+
   return (
     <div className="LoginPage">
       <h1>Login</h1>
 
-      <form onSubmit={handleLoginSubmit}>
+      <form onSubmit={handleLoginSubmit} className="form">
         <label>Email:</label>
         <input type="email" name="email" value={email} onChange={handleEmail} />
 
