@@ -12,6 +12,7 @@ import SignupPage from "./pages/SignupPage";
 import IsAnon from "./middleware/IsAnon";
 import IsPrivate from "./middleware/IsPrivate";
 import { AuthProviderWrapper } from "./context/AuthContext";
+import VertificationPage from "./pages/VertificationPage";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
                 </IsAnon>
               }
             />
+            <Route path="/verify" element={<VertificationPage />}></Route>
           </Routes>
         </Router>
       </div>
